@@ -32,6 +32,6 @@ app.get("/", (req, res) => {
     res.send("Welcome to our socket server");
 });
 app.use(cors());
-server.listen(8080, () => {
+server.listen(process.env.PORT || 8080, () => {
     console.log("Server is running at 8080");
 });
