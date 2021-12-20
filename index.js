@@ -2,7 +2,7 @@ const http = require("http");
 const express = require("express");
 const socketIo = require("socket.io");
 const uuid = require("uuid");
-
+const cors = require('cors');
 const app = express();
 const server = http.createServer(app);
 const io = new socketIo.Server(server, {
@@ -31,11 +31,7 @@ io.on("connection", (socket) => {
 app.get("/", (req, res) => {
     res.send("Welcome to our socket server");
 });
-app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
+app.use(cors());
 server.listen(8080, () => {
     console.log("Server is running at 8080");
 });
